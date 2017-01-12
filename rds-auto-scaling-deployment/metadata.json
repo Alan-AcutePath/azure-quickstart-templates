@@ -1,0 +1,7 @@
+﻿{
+  "itemDisplayName": "RDS Auto-Scaling deployment",
+  "description": "This template deploys the auto-scaling scripts in an existing RDS environment",
+  "summary": "Deploys auto-scaling scripts in an existing RDSH deployment",
+  "githubUsername": "alan-acutepath",
+  "dateUpdated": "2016-12-05"
+}
