@@ -143,7 +143,17 @@
     }
   },
   "variables": {
-    "scriptParameters": "[concat(parameters('scheduledTaskName'), parameters('scheduledTaskInterval'), parameters('scheduledTaskExcutionAccountUserName'), parameters('scheduledTaskExcutionAccountPassword'), parameters('scalingScriptDeploymentFolderName'),parameters('scalingScriptLocation'),parameters('scalingScriptLocationSasToken'))]",
+    "p": {
+
+      "taskName": "[concat(' -taskName ', parameters('scheduledTaskName'))]",
+      "taskInterval": "[concat(' -taskInterval ', parameters('scheduledTaskInterval'))]",
+      "taskExecutionAccountUserName": "[concat(' -taskExecutionAccountUserName ', parameters('scheduledTaskExcutionAccountUserName'))]",
+      "taskExecutionAccountPassword": "[concat(' -taskExecutionAccountPassword ', parameters('scheduledTaskExcutionAccountPassword'))]",
+      "folderName": "[concat(' -folderName ', parameters('scalingScriptDeploymentFolderName'))]",
+      "scriptLocation": "[concat(' -scriptLocation ', parameters('scalingScriptLocation'))]",
+      "scriptLocationSastoken": "[concat(' -scriptLocationSastoken ', parameters('scalingScriptLocationSasToken'))]"
+    },
+    "scriptParameters": "[concat(variables('p').taskName, variables('p').taskInterval, variables('p').taskExecutionAccountUserName, variables('p').taskExecutionAccountPassword, variables('p').folderName,variables('p').scriptLocation,variables('p').scriptLocationSastoken)]",
 
     "scriptFolder": "scripts",
 
