@@ -165,9 +165,6 @@
         "displayName": "script"
 
       },
-      "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('brokerVmName'))]"
-      ],
 
       "properties": {
 
