@@ -33,6 +33,9 @@
     <Content Include="Deploy-AzureResourceGroup.ps1" />
     <None Include="metadata.json" />
     <None Include="README.md" />
+    <None Include="scripts\Config.xml" />
+    <None Include="scripts\DeployScalingScript.ps1" />
+    <None Include="scripts\RDSScaler.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

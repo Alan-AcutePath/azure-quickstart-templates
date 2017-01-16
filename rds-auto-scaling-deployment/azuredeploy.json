@@ -1,12 +1,203 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
+  "parameters": {
+    "brokerVmName": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "Name of the RD Connection Broker VM resource in the deployment (the auto-scaling script is executed on this VM)."
+
+      },
+
+      "defaultValue": "cb-vm"
+
     },
-    "variables": {
+
+    "scheduledTaskName": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "Name of the scheduled task for running the auto-scaling script"
+
+      },
+
+      "defaultValue": ""
+
     },
-    "resources": [
-    ],
+
+    "scheduledTaskInterval": {
+
+      "type": "int",
+
+      "metadata": {
+
+        "description": "scheduled task running interval in minutes"
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "scheduledTaskExcutionAccountUserName": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "scheduled task excution user name"
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "scheduledTaskExcutionAccountPassword": {
+
+      "type": "securestring",
+
+      "metadata": {
+
+        "description": "scheduled task excution account password"
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "scalingScriptDeploymentFolderName": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "The folder name where auto-scaling script will be deployed on the broker VM. "
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "scalingScriptLocation": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "The base URI where auto-scaling script required by this template are located. "
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "scalingScriptLocationSasToken": {
+
+      "type": "securestring",
+
+      "metadata": {
+
+        "description": "The sasToken required to access scalingScriptLocation. "
+
+      },
+
+      "defaultValue": ""
+
+    },
+
+    "_artifactsLocation": {
+
+      "type": "string",
+
+      "metadata": {
+
+        "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
+
+      },
+
+      "defaultValue": "https://raw.githubusercontent.com/alan-acutepath/azure-quickstart-templates/master/rds-auto-scaling-deployment/"
+
+    },
+
+    "_artifactsLocationSasToken": {
+
+      "type": "securestring",
+
+      "metadata": {
+
+        "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated."
+
+      },
+
+      "defaultValue": ""
+
+    }
+  },
+  "variables": {
+    "scriptParameters": "[concat(parameters('scheduledTaskName'), parameters('scheduledTaskInterval'), parameters('scheduledTaskExcutionAccountUserName'), parameters('scheduledTaskExcutionAccountPassword'), parameters('scalingScriptDeploymentFolderName'),parameters('scalingScriptLocation'),parameters('scalingScriptLocationSasToken'))]",
+
+    "scriptFolder": "Scripts",
+
+    "scriptFileName": "DeployScalingScript.ps1"
+  },
+  "resources": [
+    {
+
+      "apiVersion": "2015-06-15",
+
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+
+      "name": "[concat(parameters('brokerVmName'),'/customscript')]",
+
+      "location": "[resourceGroup().location]",
+
+      "tags": {
+
+        "displayName": "script"
+
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('brokerVmName'))]"
+      ],
+
+      "properties": {
+
+        "publisher": "Microsoft.Compute",
+
+        "type": "CustomScriptExtension",
+
+        "typeHandlerVersion": "1.8",
+
+        "autoUpgradeMinorVersion": true,
+
+        "settings": {
+
+          "fileUris": [
+
+            "[concat(parameters('_artifactsLocation'), '/', variables('scriptFolder'), '/', variables('scriptFileName'), parameters('_artifactsLocationSasToken'))]"
+
+          ],
+          "commandToExecute": "[concat( 'powershell -noninteractive -executionpolicy bypass -file ', variables('scriptFileName'), variables('scriptParameters'), ' >> script.log 2>&1' )]"
+
+        },
+
+        "protectedSettings": {
+
+        }
+
+      }
+
+    }
+  ],
     "outputs": {
     }
 }
