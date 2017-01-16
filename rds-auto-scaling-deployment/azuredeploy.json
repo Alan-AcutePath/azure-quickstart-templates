@@ -145,7 +145,7 @@
   "variables": {
     "scriptParameters": "[concat(parameters('scheduledTaskName'), parameters('scheduledTaskInterval'), parameters('scheduledTaskExcutionAccountUserName'), parameters('scheduledTaskExcutionAccountPassword'), parameters('scalingScriptDeploymentFolderName'),parameters('scalingScriptLocation'),parameters('scalingScriptLocationSasToken'))]",
 
-    "scriptFolder": "Scripts",
+    "scriptFolder": "scripts",
 
     "scriptFileName": "DeployScalingScript.ps1"
   },
