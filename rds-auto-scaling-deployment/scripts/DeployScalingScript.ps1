@@ -28,7 +28,6 @@ function log
 #check the install folder exists or not, if not, create it
 $installFolder="c:\"+$folderName
 
-$scriptLocationSastoken="?sv=2015-04-05&sr=c&sig=OQUo5mv6jgSxWvQpYDDVMCmX5w6gwawfpncVOjQSE%2F4%3D&se=2017-01-17T02%3A09%3A44Z&sp=r"
 
 if(!(Test-Path -Path $installFolder )){
     New-Item -ItemType directory -Path $installFolder -Force
