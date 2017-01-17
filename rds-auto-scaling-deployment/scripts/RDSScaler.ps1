@@ -346,7 +346,7 @@ if($CurrentDateTime -ge $BeginPeakDateTime -and $CurrentDateTime -le $EndPeakDat
             foreach($vm in $VMs)
             {
           
-                if($sessionHost.SessionHost.ToLower().CompareTo($vm.Name.ToLower()) -eq 0)
+                if($sessionHost.SessionHost.ToLower().Contains($vm.Name.ToLower()+"."))
                 {
                     
                     #check the azure vm is running or not
@@ -404,7 +404,7 @@ if($CurrentDateTime -ge $BeginPeakDateTime -and $CurrentDateTime -le $EndPeakDat
                 {
                     foreach($vm in $VMs)
                     {
-                        if($sessionHost.SessionHost.ToLower().CompareTo($vm.Name.ToLower()) -eq 0)
+                        if($sessionHost.SessionHost.ToLower().Contains($vm.Name.ToLower()+"."))
                         {
                             #check if the azure VM is running or not
                             $IsVmRunning = $false
@@ -484,7 +484,7 @@ if($CurrentDateTime -ge $BeginPeakDateTime -and $CurrentDateTime -le $EndPeakDat
                                     break
                                 }
                             } 
-                            if($sessionHost.SessionHost.ToLower().CompareTo($vm.Name.ToLower()) -eq 0)
+                            if($sessionHost.SessionHost.ToLower().Contains($vm.Name.ToLower()+"."))
                             {
                                 #check if the Azure VM is running or not
                                 if($IsVmRunning -eq $false)
@@ -586,7 +586,7 @@ else
             }
             foreach($vm in $VMs)
             {                
-                if($sessionHost.SessionHost.ToLower().CompareTo($vm.Name.ToLower()) -eq 0)
+                if($sessionHost.SessionHost.ToLower().Contains($vm.Name.ToLower()+"."))
                 {
                     #check the azure vm is running or not
                     $IsVmRunning = $false
@@ -640,7 +640,7 @@ else
                 {
                     foreach($vm in $VMs)
                     {                        
-                        if($sessionHost.SessionHost.ToLower().CompareTo($vm.Name.ToLower()) -eq 0)
+                        if($sessionHost.SessionHost.ToLower().Contains($vm.Name.ToLower()+"."))
                         {                            
                             #check if the Azure VM is running or not
                             $IsVmRunning = $false
