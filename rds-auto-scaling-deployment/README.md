@@ -12,6 +12,8 @@ The template does the following:
 
 Existing rds connection broker virtual machine. for HA connection broker, run the template for each connection broker vm:
 
+Upload the RDSCaler.ps1 and Config.xml file with your configuration following the auto-scaling document to an Azure storage account to secure the script and the corresponding configuration info.
+
 
 Click the button below to deploy
 
