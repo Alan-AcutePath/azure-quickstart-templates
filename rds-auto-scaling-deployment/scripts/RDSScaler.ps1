@@ -244,6 +244,7 @@ If ("$env:computername.$env:userdnsdomain" -ne $ConnectionBrokerFQDN)
 #Load Azure ps module
 Import-Module -Name AzureRM
 
+# Configure the script to use either certificate or password authentication.
 #To use certificate based authentication for service principal, please uncomment the following line
 #Add-AzureRmAccount -ServicePrincipal -CertificateThumbprint $AADAppCertThumbprint -ApplicationId $AADApplicationId -TenantId $AADTenantId
 
