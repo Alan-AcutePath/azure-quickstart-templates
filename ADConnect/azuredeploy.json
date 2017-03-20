@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adDomainName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the AD domain. For example contoso.com"
+      },
+      "defaultValue": "contoso.com"
+    },
+    "adVnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The vnet name of AD domain. For example johnvnet1"
+      },
+      "defaultValue": "[concat('ADVNET',resourceGroup().name)]"
+    },
+    "adSubnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "The subnet name of AD domain. For example johnsubnet1"
+      },
+      "defaultValue": "[concat('ADStaticSubnet',resourceGroup().name)]"
+    },
+    "dnsPrivateIp": {
+      "type": "string",
+      "metadata": {
+        "description": "the private IP address of DNS server for the existing environment"
+      }
+      "defaultValue": "10.0.0.4"
+    },
+
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the administrator of the new VM and the domain. Exclusion list: 'administrator'. For example johnadmin"
+      },
+      "defaultValue": "vmadmin"
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The password for the administrator account of the new VM and the domain"
+      }
+    },
+    "imageSKU": {
+      "type": "string",
+      "allowedValues": [
+        "2012-R2-Datacenter",
+        "2016-Datacenter"
+      ],
+      "metadata": {
+        "description": "Windows server SKU"
+      },
+      "defaultValue": "2016-Datacenter"
+    },
+    "rdshVmSize": {
+      "type": "string",
+      "allowedValues": [
+        "Standard_A0",
+        "Standard_A1",
+        "Standard_A2",
+        "Standard_A3",
+        "Standard_A4",
+        "Standard_A5",
+        "Standard_A6",
+        "Standard_A7",
+        "Standard_D1",
+        "Standard_D2",
+        "Standard_D3",
+        "Standard_D4",
+        "Standard_D5"
+      ],
+      "metadata": {
+        "description": "The size of the VMs"
+      },
+      "defaultValue": "Standard_A1"
+    }
+  },
+  "variables": {},
+  "resources": [],
+  "outputs": {}
+}
