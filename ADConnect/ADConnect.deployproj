@@ -31,9 +31,7 @@
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\" />
+    <None Include="scripts\deployadconnect.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
