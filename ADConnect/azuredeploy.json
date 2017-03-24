@@ -14,6 +14,12 @@
         "description": "Existing subnet that contains the domain controller"
       }
     },
+    "dnsServerPrivateIp": {
+      "type": "string",
+      "metadata": {
+        "description": "private DNS server IP address of existing environment"
+      }
+    },
     "vmName": {
       "type": "string",
       "metadata": {
@@ -181,7 +187,12 @@
               }
             }
           }
-        ]
+        ],
+        "dnsSettings": {
+          "dnsServers": [
+            "[parameters('dnsServerPrivateIp')]"
+          ]
+        }
       }
     },
     {
