@@ -11,7 +11,7 @@
     "existingSubnetName": {
       "type": "string",
       "metadata": {
-        "description": "Existing subnet that contains the domain controller"
+        "description": "Existing subnet that virtual machine will be deployed to"
       }
     },
     "dnsServerPrivateIp": {

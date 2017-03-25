@@ -27,6 +27,7 @@
   <ItemGroup>
     <Content Include="azuredeploy.json" />
     <Content Include="azuredeploy.parameters.json" />
+    <None Include="ARM Template for Deploying Azure AD Connect.docx" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
